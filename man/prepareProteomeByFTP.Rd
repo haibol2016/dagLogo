@@ -4,8 +4,14 @@
 \alias{prepareProteomeByFTP}
 \title{Create an object of \code{\link{Proteome}} Class.}
 \usage{
-prepareProteomeByFTP(source = NULL, taxonID = NULL, species = NULL,
-  destDir = tempdir(check = TRUE), fastaFile, ...)
+prepareProteomeByFTP(
+  source = "UniProt",
+  taxonID = NULL,
+  species = NULL,
+  destDir = tempdir(check = TRUE),
+  fastaFile,
+  ...
+)
 }
 \arguments{
 \item{source}{A character vector of length 1 or NULL. A database source from 
@@ -14,8 +20,8 @@ which the proteome sequences are to be downloaded. By default, currently it is
 priority of \code{source} is higher than \code{fastaFile}.}
 
 \item{taxonID}{Taxonomy ID for a species of interest. Check the NCBI
-taxonomy database: \link{https://www.ncbi.nlm.nih.gov/taxonomy} or 
-the UniProt database \link{http://www.uniprot.org/taxonomy/}. At least one of 
+taxonomy database: \url{https://www.ncbi.nlm.nih.gov/taxonomy} or 
+the UniProt database \url{http://www.uniprot.org/taxonomy/}. At least one of 
 the two parameters, \code{taxonID} and \code{species}, should be specified. 
 If both are specified, \code{taxonID} will be used preferentially.}
 
@@ -42,12 +48,13 @@ proteome data from UniProt for a given organism of an NCBI taxonomy ID or
 species' scientific name, or by using peptide sequences in a fasta file.
 }
 \examples{
+\dontrun{
 ## Prepare an objecto of Proteome Class for a proteome from the UniProt database
-proteome <- prepareProteome(source = "UniProt", species = "Homo sapiens")
-
+#' proteome <- prepareProteomeByFTP(source = "UniProt", species = "Homo sapiens")
+}
 ## Prepare an objecto of Proteome Class from a fasta file
 fasta <- system.file("extdata", "HUMAN.fasta", package="dagLogo")
-proteome <- prepareProteome(source = NULL, species = "Homo sapiens", 
+proteome <- prepareProteomeByFTP(source = NULL, species = "Homo sapiens", 
 fastaFile=fasta)
 }
 \author{

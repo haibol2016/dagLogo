@@ -4,8 +4,16 @@
 \alias{fetchSequence}
 \title{Fetch protein/peptide sequences and create a \code{\link{dagPeptides-class}} object.}
 \usage{
-fetchSequence(IDs, type = "entrezgene", anchorAA = NULL, anchorPos,
-  mart, proteome, upstreamOffset, downstreamOffset)
+fetchSequence(
+  IDs,
+  type = "entrezgene",
+  anchorAA = NULL,
+  anchorPos,
+  mart,
+  proteome,
+  upstreamOffset,
+  downstreamOffset
+)
 }
 \arguments{
 \item{IDs}{A character vector containing protein/peptide IDs used to fetch 
@@ -103,18 +111,17 @@ if(interactive())
    try({
        dat <- read.csv(system.file("extdata", "peptides4dagLogo.csv",
                                    package = "dagLogo"))
-       data_clean <- unique(cleanPeptides(data, anchors = "s"))
-       mart <- useMart("ensembl")
-       human_mart <-
+        mart <- useMart("ensembl")
+        human_mart <-
             useDataset(mart = mart, dataset = "hsapiens_gene_ensembl")
-       seq <- fetchSequence(IDs = toupper(as.character(dat$symbol)),
+        seq <- fetchSequence(IDs = toupper(as.character(dat$symbol)),
                              type = "hgnc_symbol",
                              anchorAA = "s",
                              anchorPos = as.character(dat$peptides),
                              mart = human_mart,
                              upstreamOffset = 7,
                              downstreamOffset = 7)
-       head(seq@peptides)
+        head(seq@peptides)
     })
 }
 

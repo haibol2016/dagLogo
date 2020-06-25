@@ -29,14 +29,14 @@ Z-test and Fisher's exact test, respectively.}
 \item{\code{background}}{A numeric matrix consisting of amino acid proportions in the 
 background set of aligned, formatted peptides at each position.}
 
-\item{\code{motif}}{A numeric matrix consisting of amino acid proportions at each
+\item{\code{motif}}{A numeric matrix consisting of amino acid proportions at each 
 position for visualization by dagLogo.}
 
-\item{\code{upstreamOffset}}{A positive integer, the upstream offset relative to
-the anchoring position.}
+\item{\code{upstreamOffset}}{A positive integer, the upstream offset
+relative to the anchoring position.}
 
-\item{\code{downstreamOffset}}{A positive integer, the downstream offset relative 
-to the anchoring position.}
+\item{\code{downstreamOffset}}{A positive integer, the upstream offset
+relative to the anchoring position.}
 }}
 
 \author{

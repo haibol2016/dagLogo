@@ -9,8 +9,8 @@
 #' "UniProt". If it is NULL, then \code{fastaFile} has to be specified. The 
 #' priority of \code{source} is higher than \code{fastaFile}.
 #' @param taxonID Taxonomy ID for a species of interest. Check the NCBI
-#' taxonomy database: \link{https://www.ncbi.nlm.nih.gov/taxonomy} or 
-#' the UniProt database \link{http://www.uniprot.org/taxonomy/}. At least one of 
+#' taxonomy database: \url{https://www.ncbi.nlm.nih.gov/taxonomy} or 
+#' the UniProt database \url{http://www.uniprot.org/taxonomy/}. At least one of 
 #' the two parameters, \code{taxonID} and \code{species}, should be specified. 
 #' If both are specified, \code{taxonID} will be used preferentially.
 #' @param species A character vector of length 1. The Latin name of a species 
@@ -24,7 +24,7 @@
 #' protein sequences are read in.
 #' @param ... other parameters passing to the function \code{\link{download.file}}.
 #'
-#' @importFrom UniProt.ws availableUniprotSpecies
+#' @importFrom UniProt.ws availableUniprotSpecies lookupUniprotSpeciesFromTaxId
 #' @import methods
 #' @importFrom Biostrings readAAStringSet
 #' @importFrom utils download.file
@@ -32,15 +32,16 @@
 #' @export
 #' @author Haibo Liu
 #' @examples 
+#' \dontrun{
 #' ## Prepare an objecto of Proteome Class for a proteome from the UniProt database
-#' proteome <- prepareProteome(source = "UniProt", species = "Homo sapiens")
-#' 
+#' #' proteome <- prepareProteomeByFTP(source = "UniProt", species = "Homo sapiens")
+#' }
 #' ## Prepare an objecto of Proteome Class from a fasta file
 #' fasta <- system.file("extdata", "HUMAN.fasta", package="dagLogo")
-#' proteome <- prepareProteome(source = NULL, species = "Homo sapiens", 
+#' proteome <- prepareProteomeByFTP(source = NULL, species = "Homo sapiens", 
 #' fastaFile=fasta)
 
-prepareProteomeByFTP <- function(source = NULL, taxonID = NULL, species = NULL, 
+prepareProteomeByFTP <- function(source = "UniProt", taxonID = NULL, species = NULL, 
                             destDir=tempdir(check = TRUE), fastaFile, ...) 
 {
     if (is.null(taxonID) && is.null(species))

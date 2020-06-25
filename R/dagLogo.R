@@ -95,33 +95,34 @@ dagHeatmap <-function(testDAUresults, type = c("diff", "statistics"), ...)
 
 colorsets2 <- function(colorScheme=c("null", "classic", "charge",
                                      "chemistry", "hydrophobicity")){
-    colorScheme <- match.arg(colorScheme)
-    auto<-c('A'='#CCFF00', 'C'='#FFFF00', 'D'='#FF0000', 'E'='#FF0066', 
-            'F'='#00FF66', 'G'='#FF9900', 'H'='#0066FF', 'I'='#66FF00', 
-            'K'='#6600FF', 'L'='#33FF00', 'M'='#00FF00', 'N'='#CC00FF', 
-            'P'='#FFCC00', 'Q'='#FF00CC', 'R'='#0000FF', 'S'='#FF3300', 
-            'T'='#FF6600', 'V'='#99FF00', 'W'='#00CCFF', 'Y'='#00FFCC')
-    classic <- c("nonpolar_aliphatic"="#000000",
-                    "polar_uncharged"="#00811B",
-                    "aromatic"="#2000C7",
-                    "positively_charged"="#800080",
-                    "negatively_charged"="#FFB32C")
-    chemistry <- c("hydrophobic"="#000000",
-                      "polar"="#00811B",
-                      "basic"="#2000C7",
-                      "neutral"="#800080",
-                      "acidic"='#D00001')
-    hydrophobicity <- c("hydrophilic"='#000000', 
-                           "neutral"='#00811B', 
-                           "hydrophobic"='#2000C7')
-    charge<-c("positive"="#FFB32C", "neutral"="#2000C7", "negative"="#CCCCCC")
-    switch(colorScheme,
-           null=auto,
-           classic=classic,
-           charge=charge,
-           chemistry=chemistry,
-           hydrophobicity=hydrophobicity,
-           auto)
+  colorScheme <- match.arg(colorScheme)
+  auto <- c('A'='#CCFF00', 'C'='#FFFF00', 'D'='#FF0000', 'E'='#FF0066', 
+          'F'='#00FF66', 'G'='#FF9900', 'H'='#0066FF', 'I'='#66FF00', 
+          'K'='#6600FF', 'L'='#33FF00', 'M'='#00FF00', 'N'='#CC00FF', 
+          'P'='#FFCC00', 'Q'='#FF00CC', 'R'='#0000FF', 'S'='#FF3300', 
+          'T'='#FF6600', 'V'='#99FF00', 'W'='#00CCFF', 'Y'='#00FFCC')
+  classic <- c("nonpolar_aliphatic"="#000000",
+               "polar_uncharged"="#00811B",
+               "aromatic"="#2000C7",
+               "positively_charged"="#800080",
+               "negatively_charged"="#FFB32C")
+  chemistry <- c("hydrophobic"="#000000",
+                 "polar"="#00811B",
+                 "basic"="#2000C7",
+                 "neutral"="#800080",
+                 "acidic"='#D00001')
+  hydrophobicity <- c("hydrophilic"='#000000', 
+                      "neutral"='#00811B', 
+                      "hydrophobic"='#2000C7')
+  charge <- c("positive"="#FFB32C", 
+              "neutral"="#2000C7", "negative"="#CCCCCC")
+  switch(colorScheme,
+         null=auto,
+         classic=classic,
+         charge=charge,
+         chemistry=chemistry,
+         hydrophobicity=hydrophobicity,
+         auto)
 }
 
 #' Color sets for visualization.
@@ -164,8 +165,6 @@ colorsets <-function(colorScheme = ls(envir = cachedEnv))
   get(colorScheme, envir = cachedEnv)$color
 }
 
-
-
 #' @title convert group name to a single character
 #' @description convert group name to a single character to shown in a logo
 #' @param nameScheme could be "classic", "charge", "chemistry", "hydrophobicity"
@@ -174,26 +173,26 @@ colorsets <-function(colorScheme = ls(envir = cachedEnv))
 #' @keywords figure
 
 nameHash <- function(nameScheme=c("classic", "charge", "chemistry", "hydrophobicity")){
-    nameScheme <- match.arg(nameScheme)
-    classic <- c("nonpolar_aliphatic"="M",
-                 "polar_uncharged"="U",
-                 "aromatic"="A",
-                 "positively_charged"="P",
-                 "negatively_charged"="N")
-    chemistry <- c("hydrophobic"="H",
-                   "polar"="P",
-                   "basic"="B",
-                   "neutral"="U",
-                   "acidic"='A')
-    hydrophobicity <- c("hydrophilic"='I', 
-                        "neutral"='U', 
-                        "hydrophobic"='O')
-    charge<-c("positive"="P", "neutral"="U", "negative"="N")
-    switch(nameScheme,
-           classic=classic,
-           charge=charge,
-           chemistry=chemistry,
-           hydrophobicity=hydrophobicity)
+  nameScheme <- match.arg(nameScheme)
+  classic <- c("nonpolar_aliphatic"="M",
+               "polar_uncharged"="U",
+               "aromatic"="A",
+               "positively_charged"="P",
+               "negatively_charged"="N")
+  chemistry <- c("hydrophobic"="H",
+                 "polar"="P",
+                 "basic"="B",
+                 "neutral"="U",
+                 "acidic"='A')
+  hydrophobicity <- c("hydrophilic"='I', 
+                      "neutral"='U', 
+                      "hydrophobic"='O')
+  charge<-c("positive"="P", "neutral"="U", "negative"="N")
+  switch(nameScheme,
+         classic=classic,
+         charge=charge,
+         chemistry=chemistry,
+         hydrophobicity=hydrophobicity)
 }
 
 
@@ -266,9 +265,8 @@ getGroupingSymbol <-function(groupingScheme = ls(envir = cachedEnv))
 #' @param alpha Alpha channel for transparency of low affinity letters.
 #' @importFrom grDevices dev.size
 #' @importFrom graphics plot.new
-#' @import motifStack
+#' @importFrom motifStack plotMotifLogoA
 #' @import grid
-#' @importFrom grImport2 pictureGrob 
 #'
 #' @return A sequence Logo is plotted without returned values.
 #' @export
@@ -296,16 +294,16 @@ getGroupingSymbol <-function(groupingScheme = ls(envir = cachedEnv))
 
 
 dagLogo <- function(testDAUresults,
-                        type = c("diff", "zscore"),
-                        pvalueCutoff = 0.05,
-                        groupingSymbol = getGroupingSymbol(testDAUresults@group),
-                        font = "Helvetica",
-                        fontface = "bold",
-                        fontsize = 5,
-                        title = NULL,
-                        legend = FALSE,
-                        labelRelativeToAnchor = FALSE,
-                        labels = NULL, alpha=1) 
+                    type = c("diff", "zscore"),
+                    pvalueCutoff = 0.05,
+                    groupingSymbol = getGroupingSymbol(testDAUresults@group),
+                    font = "sans",
+                    fontface = "bold",
+                    fontsize = 5,
+                    title = NULL,
+                    legend = FALSE,
+                    labelRelativeToAnchor = FALSE,
+                    labels = NULL, alpha=1) 
 {
   if (missing(testDAUresults) || class(testDAUresults) != "testDAUresults") 
   {
@@ -321,7 +319,8 @@ dagLogo <- function(testDAUresults,
   {
     if (length(labels) < npos) 
     {
-      stop("The length of labels is too short!", call. = FALSE)
+      stop("The length of labels is too short!", 
+           call. = FALSE)
     }
   }
   colset <- colorsets(testDAUresults@group)
@@ -360,13 +359,17 @@ dagLogo <- function(testDAUresults,
     symbols <- symbolsCache[[key]]
   } else 
   {
-    symbols <- motifStack:::coloredSymbols(ncha, font, colset[rname], 
-                                           rname, alpha = alpha)
+    symbols <- motifStack:::coloredSymbols(ncha, 
+                                           font, 
+                                           colset[rname], 
+                                           rname, 
+                                           alpha = alpha, envir = .globalEnv)
     symbolsCache[[key]] <- symbols
     
     ## save symbolsCache to the environment variable for future use
     assign("tmp_motifStack_symbolsCache", symbolsCache, envir = .globalEnv)
   }
+  pictureGrob <- get("pictureGrob", envir = .globalEnv)
   
   dw <- ifelse(legend, 1 / (npos + 6), 1 / (npos + 2))
   
@@ -414,13 +417,13 @@ dagLogo <- function(testDAUresults,
     x = x0,
     y = c(remap(0) + dw, 1),
     arrow = arrow(length = unit(0.01, "npc")),
-    gp = gpar(lwd = lwd/2)
+    gp = gpar(lwd = lwd)
   )
   grid.lines(
     x = x0,
     y = c(remap(0), 0),
     arrow = arrow(length = unit(0.01, "npc")),
-    gp = gpar(lwd = lwd/2)
+    gp = gpar(lwd = lwd)
   )
   
   ##draw tick
@@ -448,10 +451,13 @@ dagLogo <- function(testDAUresults,
   grid.text(label= data$label, 
             x = x3, y = remap(0) + dw / 2,
             just = "centre",  rot = 90, 
-            gp = gpar(fontsize=fontsize, fontface = fontface))
+            gp = gpar(fontsize=fontsize, fontface = fontface)
+  )
   
   x.pos <- x0 + dw / 2
-  for (j in 1:npos) {
+  
+  for (j in 1:npos) 
+  {
     heights <- dat[, j]
     id <- order(heights)
     heights <- heights[testDAUresults@pvalue[, j] < pvalueCutoff]
@@ -459,54 +465,48 @@ dagLogo <- function(testDAUresults,
       id[id %in% which(testDAUresults@pvalue[, j] < pvalueCutoff)]
     id1 <- order(heights)
     y.pos <- remap(sum(heights[heights < 0]))
+    
     flag <- 0
-    if (length(heights) > 0) {
-      for (i in 1:length(heights)) {
+    
+    x_tick <- j
+    if (labelRelativeToAnchor) 
+    {
+      x_tick <- j - 1 - testDAUresults@upstreamOffset
+      
+    } else if (!is.null(labels)) 
+    {
+      x_tick <- labels[j]
+    }
+    
+    if (length(heights) > 0)
+    {
+      for (i in 1:length(heights)) 
+      {
         h <- reheight(heights[id1[i]])
         if (heights[id1[i]] > 0)
           flag <- flag + 1
+        
         if (flag == 1) 
         {
           ## plot x-axis tick labels
-          if (labelRelativeToAnchor) 
-          {
-            grid.text(
-              j - 1 - testDAUresults@upstream,
-              x.pos + dw / 2,
-              y.pos + dw / 2,
-              just = c(.5, .5),
-              gp = gpar(fontsize=fontsize, fontface = fontface)
-            )
-          } else
-          {
-            if (!is.null(labels)) 
-            {
-              grid.text(
-                labels[j],
-                x.pos + dw / 2,
-                y.pos + dw / 2,
-                just = c(.5, .5),
-                gp = gpar(fontsize=fontsize, fontface = fontface)
-              )
-            } else
-            {
-              grid.text(
-                j,
-                x.pos + dw / 2,
-                y.pos + dw / 2,
-                just = c(.5, .5),
-                gp = gpar(fontsize=fontsize, fontface = fontface)
-              )
-            }
-          }
+          grid.text(
+            x_tick,
+            x.pos + dw / 2,
+            y.pos + dw / 2,
+            just = c(.5, .5),
+            gp = gpar(fontsize=fontsize*0.8, fontface = fontface)
+          )
           y.pos <- y.pos + dw
           flag <- flag + 1
         }
+        
         ## plot symbols for amino acids 
-        if (h > 0) {
-          symid <- ifelse(heights[id1[i]] > 0, id[i], paste0(id[i], "_", alpha))
+        if (h > 0) 
+        {
+          symid <- ifelse(heights[id1[i]] > 0, id[i], 
+                          paste0(id[i], "_", alpha))
           grid.draw(
-            grImport2::pictureGrob(
+            pictureGrob(
               symbols[[symid]],
               x.pos,
               y.pos,
@@ -519,19 +519,21 @@ dagLogo <- function(testDAUresults,
           y.pos <- y.pos + h
         }
       }
-      
     }
+    
     ## plot x-axis tick labels
     if (flag == 0)
     {
-      grid.text(j,
+      grid.text(x_tick,
                 x.pos + dw / 2,
                 y.pos + dw / 2,
                 just = c(.5, .5),
-                gp = gpar(fontsize=fontsize, fontface = fontface))
+                gp = gpar(fontsize=fontsize * 0.8, 
+                          fontface = fontface))
     }    
     x.pos <- x.pos + dw
   }
+
   if (!is.null(title))
   {
     grid.text(
@@ -539,7 +541,9 @@ dagLogo <- function(testDAUresults,
       x = 0.5,
       y = 0.98,
       just = c(.5, .5),
-      gp = gpar(col = "black", fontsize=fontsize*2, fontface = fontface))
+      gp = gpar(col = "black", 
+                fontsize=fontsize*2, 
+                fontface = fontface))
   }
   
   ## plot legend
@@ -554,14 +558,15 @@ dagLogo <- function(testDAUresults,
       grid.text(
         groupingSymbol[i],
         x = (npos+2)*dw,
-        y = .95 - i * 0.1 * lwd/2,
+        y = .95 - i * 0.1 * fontsize/20,
         just = c(.5, .5),
-        gp = gpar(col = colset[groupingSymbol[i]], fontsize=fontsize, 
+        gp = gpar(col = colset[groupingSymbol[i]], 
+                  fontsize=fontsize, 
                   fontface = fontface))
       grid.text(
         names(groupingSymbol)[i],
-        x = (npos+2)*dw + 0.1 * lwd/2,
-        y = .95 - i * 0.1 * lwd/2,
+        x = (npos+2)*dw + 0.1 * fontsize/20,
+        y = .95 - i * 0.1 * fontsize/20,
         just = c(0, .5),
         gp = gpar(col = colset[groupingSymbol[i]], fontsize=fontsize, 
                   fontface = fontface))

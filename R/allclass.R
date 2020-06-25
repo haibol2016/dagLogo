@@ -5,10 +5,11 @@
 #'  Objects can be created by calls of the form 
 #'  
 #'  \code{new("dagPeptides", data, peptides, upstreamOffset, downstreamOffset, type)}.
-#' @slot data A data frame with column names: IDs, anchorAA, anchorPos, peptide and anchor.
+#' @slot data A data frame with columns names: IDs, anchorAA, anchorPos, peptide and anchor.
 #' @slot peptides A matrix of character, each element is a single-character symbol
 #' for a amino acid.
-#' @slot upstreamOffset An integer, the upstream offset relative to the anchoring position.
+#' @slot upstreamOffset An integer, the upstream offset
+#' relative to the anchoring position.
 #' @slot downstreamOffset An integer, the downstream offset relative to the
 #' anchoring position.
 #' @slot type A character vector of length 1. Available options :"UniProt", 
@@ -39,7 +40,7 @@ setClass(
         if (object@upstreamOffset < 0 ||
             object@downstreamOffset < 0)
             re <-
-                "upstreamOffset and downstreamOffset should be integers greater than 0."
+                "upstreamOffset and downstreamOffset should be integers no less than 0."
         peptides <- as.character(object@peptides)
         peptides <-
             peptides[(!is.na(peptides)) & (peptides != "NA")]
@@ -96,14 +97,14 @@ setClass(
 
 #' Class \code{dagBackground}.
 #' 
-#' An S4 class to represent a background composed of a formatted, aligned 
-#' peptides for dagLogo analysis.
+#' An S4 class to represent a background composed of a formatted, aligned peptides for 
+#' dagLogo analysis.
 #' 
 #' @slot background A list of data frame, each of which represetns 
 #' one subset of the background set. Within each n-by-1 dataframe is a the 
 #' aligned peptides of same length.
 #' @slot numSubsamples An integer. That is the length of the \code{background} list
-#' @slot testType An character.The type of statistic testing for dagLogo analysis of 
+#' @slot testType An character. The type of statistic testing for dagLogo analysis of 
 #' differential usage of amino acids.
 #' 
 #' @name dagBackground-class
@@ -136,12 +137,12 @@ setClass("dagBackground",
 #' @slot pvalue A numeric matrix consisting of p-values.
 #' @slot background A numeric matrix consisting of amino acid proportions in the 
 #' background set of aligned, formatted peptides at each position.
-#' @slot motif A numeric matrix consisting of amino acid proportions at each
+#' @slot motif A numeric matrix consisting of amino acid proportions at each 
 #' position for visualization by dagLogo. 
-#' @slot upstreamOffset A positive integer, the upstream offset relative to
-#' the anchoring position.
-#' @slot downstreamOffset A positive integer, the downstream offset relative 
-#' to the anchoring position.
+#' @slot upstreamOffset A positive integer, the upstream offset
+#' relative to the anchoring position.
+#' @slot downstreamOffset A positive integer, the upstream offset
+#' relative to the anchoring position.
 #' 
 #' @name testDAUresults-class
 #' @rdname testDAUresults-class
@@ -181,15 +182,15 @@ setClass(
                 ncol(object@pvalue) == 0)
             {
                 re <-
-                    "Slots for statistics, differences and pvalues could not be empty." 
+                    "Slots statistics, difference and pvalue could not be empty." 
             }
             if (any(dim(object@pvalue) != dim(object@difference)) || 
                 any(dim(object@pvalue) != dim(object@statistics)))
             {
                 re <-
-                    "Dimensions of slots for statistics, differences and pvalues should be identical."
+                    "Dimensions of slots for statistics, difference and pvalue should be identical."
             }
-        }
+        } 
         re
     }
 )

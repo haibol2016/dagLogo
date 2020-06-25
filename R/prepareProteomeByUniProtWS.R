@@ -8,7 +8,7 @@
 #' @param fasta A fasta file name or an object of \code{\link{AAStringSet}}.
 #' @param species An character vector of length (1) to designate the species
 #' of the proteome
-#' @import Biostrings
+#' @importFrom Biostrings readAAStringSet
 #' @export
 #' @return An object of Proteome which contain protein sequence information.
 #' @author Jianhong Ou
@@ -18,7 +18,7 @@
 #'    library(UniProt.ws)
 #'    availableUniprotSpecies("Drosophila melanogaster")
 #'    UniProt.ws <- UniProt.ws(taxId=7227)
-#'    proteome <- prepareProteome(UniProt.ws, species="Drosophila melanogaster")
+#'    proteome <- prepareProteomeByUniProtWS(UniProt.ws, species="Drosophila melanogaster")
 #'  }
 #' @keywords misc
 
@@ -45,11 +45,11 @@ prepareProteomeByUniProtWS <- function(UniProt.ws, fasta, species="unknown"){
             proteome <- data.frame(SEQUENCE=as.character(fasta),
                                    ID=names(fasta),
                                    stringsAsFactors=FALSE)
+            return(new("Proteome", 
+                       proteome=proteome,
+                       type="fasta",
+                       species=species))
         }
-        return(new("Proteome", 
-                   proteome=proteome,
-                   type="fasta",
-                   species=species))
     }
     stop("Please check you inputs.", call.=FALSE)
 }

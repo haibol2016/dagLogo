@@ -1,3 +1,28 @@
+CHANGES IN VERSION 1.27.1
+-----------------------
+    o adjust the Depends, Imports and Suggests packages
+    
+CHANGES IN VERSION 1.23.5
+-----------------------
+    o add dontrun for prepareProteomeByFTP in case there is net connection issue.
+    
+CHANGES IN VERSION 1.23.4
+-----------------------
+    o return errors when type of getSequence is not correct.
+    
+CHANGES IN VERSION 1.23.3
+-----------------------
+    o Update documentation.
+    
+CHANGES IN VERSION 1.23.1
+-----------------------
+    o Add function prepareProteomeByFTP
+    o fix the bug in addScheme
+    
+CHANGES IN VERSION 1.21.4
+-----------------------
+    o Fix the bug if there are multiple position in one peptides for fetchSequence.
+    
 CHANGES IN VERSION 1.21.3
 -----------------------
     o Update to grImport2

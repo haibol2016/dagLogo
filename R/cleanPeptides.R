@@ -21,7 +21,7 @@ cleanPeptides <- function(dat, anchors){
   
   ## specify 20 amino acids in one-letter symbol
   stopifnot(all(grepl("[galmfwkqespvicyhrndt]", anchors)))
- 
+  
   if(!is.data.frame(dat)){
     dat <- as.data.frame(dat, stringsAsFactors=FALSE)
   }

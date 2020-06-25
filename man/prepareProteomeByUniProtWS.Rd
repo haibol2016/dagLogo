@@ -27,7 +27,7 @@ if(interactive()){
    library(UniProt.ws)
    availableUniprotSpecies("Drosophila melanogaster")
    UniProt.ws <- UniProt.ws(taxId=7227)
-   proteome <- prepareProteome(UniProt.ws, species="Drosophila melanogaster")
+   proteome <- prepareProteomeByUniProtWS(UniProt.ws, species="Drosophila melanogaster")
  }
 }
 \seealso{
